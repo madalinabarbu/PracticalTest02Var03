@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">PracticalTest02Var03</string>
+    <string name="server_port">Server Port</string>
+    <string name="getWord">GET</string>
+    <string name="connect">Connect to server</string>
+    <string name="word">Write word here</string>
+    <string name="translatedWord">Translated Word</string>
 </resources>

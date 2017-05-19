@@ -26,4 +26,6 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.2.0'
     testCompile 'junit:junit:4.12'
+    compile group: 'cz.msebera.android', name: 'httpclient', version: '4.4.1.2'
+    compile project (':jsoup-1.10.2')
 }
