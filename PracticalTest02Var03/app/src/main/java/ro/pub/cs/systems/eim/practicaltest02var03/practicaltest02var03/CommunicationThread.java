@@ -8,6 +8,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.w3c.dom.NodeList;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -80,24 +81,16 @@ public class CommunicationThread extends Thread {
                 ResponseHandler<String> responseHandler = new BasicResponseHandler();
 
                 String pageSourceCode = httpClient.execute(httpGet, responseHandler);
-                if (pageSourceCode == null) {
-                    Log.e(Constants.TAG, "[COMMUNICATION THREAD] Error getting the information from the webservice!");
-                    return;
+                Log.i(Constants.TAG, "[src code] " + pageSourceCode);
+
+                if (pageSourceCode != null )
+                    definition = pageSourceCode;
+
+
+                if (definition != null) {
+                    serverThread.setData(word, definition);
                 }
 
-                Document document = Jsoup.parse(pageSourceCode);
-
-                Element element = document.child(0);
-
-                Elements elements = element.getElementsByTag("WordDefinition");
-
-                for (Element definitions : elements) {
-                    definition = definitions.data();
-                    if (definition != null) {
-                        serverThread.setData(word, definition);
-                        break;
-                    }
-                }
             }
 
             if (definition == null) {
